@@ -1,0 +1,46 @@
+.secondPart {
+  display: inline-block;
+  background-color: white;
+  width: 50%;
+  height: 800px;
+  margin-top: 80px;
+}
+
+.currentDate {
+  text-align: center;
+  /* display: flex; */
+  color: gray;
+  font-size: 30px;
+}
+
+.meetings {
+  margin: 50px;
+}
+
+.addIcon {
+  color: rgb(55, 100, 184);
+  position: fixed;
+  right: 5px;
+  bottom: 70px;
+}
+
+.title-color {
+  display: inline-block;
+  color: blue;
+  margin-right: 10px;
+}
+
+.start-color {
+  display: inline-block;
+  color: red;
+}
+
+.end-color {
+  display: inline-block;
+  color: red;
+}
+
+.list-items {
+  list-style-type: none;
+  font-size: 1.5rem;
+}

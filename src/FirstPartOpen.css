@@ -1,0 +1,12 @@
+.firstPartOpen{
+    display: flex;
+    background-color: green;
+    width: 50%;
+    height: 800px;
+}
+
+.open{
+    color: white;
+    font-size: 100px;
+    margin-top: 250px;
+}
