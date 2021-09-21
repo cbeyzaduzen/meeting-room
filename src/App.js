@@ -7,6 +7,7 @@ import FirstPartOpen from "./FirstPartOpen";
 function App() {
   return (
     <div className="App">
+      
       {/* <FirstPartBusy/> */}
       <FirstPartOpen />
 
