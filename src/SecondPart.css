@@ -17,6 +17,10 @@
   margin: 50px;
 }
 
+.header{
+  margin-left:70px ;
+}
+
 .addIcon {
   color: rgb(55, 100, 184);
   position: fixed;

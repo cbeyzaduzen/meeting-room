@@ -1,22 +1,18 @@
 import "./App.css";
-// import FirstPart from "./FirstPartOpen";
 import SecondPart from "./SecondPart";
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import FirstPartBusy from "./FirstPartBusy";
 import FirstPartOpen from "./FirstPartOpen";
 
 function App() {
   return (
     <div className="App">
-      
       {/* <FirstPartBusy/> */}
-      <FirstPartOpen/>
+      <FirstPartOpen />
 
       <SecondPart></SecondPart>
-      
     </div>
   );
-  
 }
 
 export default App;

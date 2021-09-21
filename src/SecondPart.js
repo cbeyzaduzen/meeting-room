@@ -42,7 +42,7 @@ export default class SecondPart extends Component {
       meetingEndDate.split("T")[1].split(":")[0] * 60 +
         parseInt(meetingEndDate.split("T")[1].split(":")[1])
     );
-    var meetingDayMonth=meetingStartDate.split("T")[0];
+    var meetingDayMonth = meetingStartDate.split("T")[0];
 
     var busy = meetingTimeStart >= newTime && newTime <= meetingTimeEnd;
     var open = meetingTimeStart < newTime && meetingTimeEnd > newTime;
@@ -73,31 +73,31 @@ export default class SecondPart extends Component {
       meetingTimeEnd: meetingTimeEnd,
       busy: busy,
       open: open,
-      meetingDayMonth:meetingDayMonth,
+      meetingDayMonth: meetingDayMonth,
     };
   }
 
-  renderElement() {
+  changeFirstPartColor() {
     if (this.state.open) {
       console.log("open ");
-      return <FirstPartOpen></FirstPartOpen>;
+      return <FirstPartOpen />;
     } else if (this.state.busy) {
       console.log("busy ");
-      return <FirstPartBusy></FirstPartBusy>;
+      return <FirstPartBusy />;
     }
   }
 
   render() {
-    <div>{this.renderElement}</div>;
+    <div>{this.changeFirstPartColor}</div>
     return (
       <div className="secondPart">
         <div className="currentDate">{this.state.date}</div>
 
         <div className="meetings">
           <h1 className="header">Upcoming Meetings</h1>
-
           <form id="meeting_list">
             <ul className="meetings">
+              
               <li className="list-items">
                 <div className="title-color">
                   {localStorage.getItem("Title")}
@@ -110,10 +110,10 @@ export default class SecondPart extends Component {
                   {this.state.meetingTimeEnd -
                     this.state.meetingTimeStart +
                     "minutes"}
-                    ,
-                    {this.state.meetingDayMonth}
+                  ,{this.state.meetingDayMonth}
                 </div>
               </li>
+              <hr />
             </ul>
           </form>
         </div>

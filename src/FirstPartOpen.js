@@ -3,8 +3,6 @@ import "./FirstPartOpen.css";
 
 
 export default class FirstPartOpen extends Component {
-
-    
   render() {
     return (
       <div className="firstPartOpen">

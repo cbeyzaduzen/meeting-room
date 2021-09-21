@@ -7,9 +7,9 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import "./Popup.css";
 
 const Popup = () => {
-  const [title, setTitle] = useState("");
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
+  const [title, setTitle] = useState([]);
+  const [start, setStart] = useState([]);
+  const [end, setEnd] = useState([]);
 
   const handle = () => {
     localStorage.setItem("Title", title);
@@ -19,7 +19,7 @@ const Popup = () => {
 
   return (
     <ReactCircleModal
-    className="circle-modal"
+      className="circle-modal"
       backgroundColor="#E0F1F0"
       toogleComponent={(onClick) => (
         <div className="addIcon">
@@ -41,43 +41,26 @@ const Popup = () => {
           </div>
 
           <div className="form-group-start">
-          <label className="start-title">Meeting Start</label>
-          <input
-            type="datetime-local"
-            name="start"
-            className="startDate"
-            value={start}
-            onChange={(e) => setStart(e.target.value)}
-          />
+            <label className="start-title">Meeting Start</label>
+            <input
+              type="datetime-local"
+              name="start"
+              className="startDate"
+              value={start}
+              onChange={(e) => setStart(e.target.value)}
+            />
           </div>
 
           <div className="form-group-end">
-          <label className="end-title">Meeting End</label>
-          <input
-            type="datetime-local"
-            name="end"
-            className="endDate"
-            value={end}
-            onChange={(e) => setEnd(e.target.value)}
-          />
-           </div>
-          {/* <div className="startInput">
-            <p>Meeting Start Date and Time</p>
-            <DatePicker
-              name="start"
-              value={start}
-              onChange={(e) => setStart(e.value)}
+            <label className="end-title">Meeting End</label>
+            <input
+              type="datetime-local"
+              name="end"
+              className="endDate"
+              value={end}
+              onChange={(e) => setEnd(e.target.value)}
             />
           </div>
-
-          <div className="finishInput">
-            <p>Meeting End Date and Time</p>
-            <DatePicker
-              name="end"
-              value={end}
-              onChange={(e) => setEnd(e.value)}
-            />
-          </div> */}
 
           <button
             onClick={handle}
