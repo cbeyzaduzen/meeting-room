@@ -8,7 +8,6 @@
 
 .currentDate {
   text-align: center;
-  /* display: flex; */
   color: gray;
   font-size: 30px;
 }
@@ -17,8 +16,8 @@
   margin: 50px;
 }
 
-.header{
-  margin-left:70px ;
+.header {
+  margin-left: 70px;
 }
 
 .addIcon {

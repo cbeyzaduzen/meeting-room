@@ -3,6 +3,15 @@ import "./SecondPart.css";
 import Popup from "./Popup";
 import FirstPartOpen from "./FirstPartOpen";
 import FirstPartBusy from "./FirstPartBusy";
+import { BrowserRouter, Route } from "react-router-dom";
+
+// const ıfOpen = () => {
+//   return this.state.open;
+// };
+
+// const ıfBusy = () => {
+//   return this.state.busy;
+// };
 
 export default class SecondPart extends Component {
   constructor() {
@@ -77,18 +86,34 @@ export default class SecondPart extends Component {
     };
   }
 
-  changeFirstPartColor() {
+  changeFirstPart() {
     if (this.state.open) {
-      console.log("open ");
       return <FirstPartOpen />;
     } else if (this.state.busy) {
-      console.log("busy ");
       return <FirstPartBusy />;
     }
   }
 
   render() {
-    <div>{this.changeFirstPartColor}</div>
+    <div>
+      {this.changeFirstPart}
+    </div>
+    // <BrowserRouter>
+    //   <div>
+    //     <Route
+    //       path="/busy"
+    //       exact strict
+    //       component={busy}
+    //     ></Route>
+
+    //     <Route
+    //       path="/open"
+    //       exact
+    //       component={open}
+    //     ></Route>
+    //   </div>
+    // </BrowserRouter>;
+
     return (
       <div className="secondPart">
         <div className="currentDate">{this.state.date}</div>
@@ -97,7 +122,6 @@ export default class SecondPart extends Component {
           <h1 className="header">Upcoming Meetings</h1>
           <form id="meeting_list">
             <ul className="meetings">
-              
               <li className="list-items">
                 <div className="title-color">
                   {localStorage.getItem("Title")}

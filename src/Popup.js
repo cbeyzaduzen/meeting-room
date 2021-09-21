@@ -9,9 +9,9 @@ const Popup = () => {
   const [end, setEnd] = useState([]);
 
   const handle = () => {
-    localStorage.setItem("Title", title);
-    localStorage.setItem("Start", start);
-    localStorage.setItem("End", end);
+    localStorage.setItem("Title", [title]);
+    localStorage.setItem("Start", [start]);
+    localStorage.setItem("End", [end]);
   };
 
   return (
