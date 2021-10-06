@@ -1,0 +1,137 @@
+import { TextField } from "@material-ui/core";
+import React, { Component } from "react";
+import DateTimePicker from "react-datetime-picker/dist/DateTimePicker";
+import PopupDate from "./PopupDate";
+import ReactCircleModal from "react-circle-modal";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+
+export default class Popup extends Component {
+  documentData;
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.state = {
+      title: "",
+      start: "",
+      end: "",
+    };
+  }
+
+  getDataFromStorage() {
+    let data;
+
+    if (localStorage.getItem("document") === null) {
+      data = [];
+    } else {
+      data = JSON.parse(localStorage.getItem("document"));
+    }
+  }
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  // tarih için değiştirme yapılan yer burada yazacak
+  handleChangeEndDate = (value) => {
+    this.setState({
+      end: value,
+    });
+
+    console.log(value);
+  };
+
+  handleChangeStartDate = (value) => {
+    this.setState({
+      start: value,
+    });
+
+    console.log(value);
+  };
+
+  
+  
+  handleFormSubmit(e) {
+    // buraya getstorage gibi fonks çağırmalıyız
+    let deneme = this.getDataFromStorage();
+
+    e.preventDefault();
+    localStorage.setItem("document", JSON.stringify(deneme));
+  }
+
+  // React Life Cycle
+  // componentDidMount() {
+  //   this.documentData = JSON.parse(localStorage.getItem("document"));
+
+  //   if (localStorage.getItem("document")) {
+  //     this.setState({
+  //       title: this.documentData.title,
+  //       end: this.documentData.end,
+  //       start: this.documentData.start,
+  //     });
+  //   } else {
+  //     this.setState({
+  //       title: "",
+  //       end: "",
+  //       start: "",
+  //     });
+  //   }
+  // }
+  render() {
+    return (
+      <ReactCircleModal
+        backgroundColor="#E0F1F0"
+        toogleComponent={(onClick) => (
+          <div className="addIcon">
+            <AddCircleIcon onClick={onClick}></AddCircleIcon>
+          </div>
+        )}
+      >
+        {(onClick) => (
+          <form onSubmit={this.handleFormSubmit}>
+            <div className="form-group">
+              <label>Title</label>
+              <input
+                className="meeting_title"
+                type="text"
+                name="title"
+                className="form-control"
+                value={this.state.title}
+                onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="startInput">
+              <p>Meeting Start Date and Time</p>
+              <DateTimePicker
+                name="start"
+                value={this.state.start}
+                onChange={this.handleChangeStartDate}
+              />
+            </div>
+
+            <div className="finishInput">
+              <p>Meeting End Date and Time</p>
+              <DateTimePicker
+                name="end"
+                value={this.state.end}
+                onChange={this.handleChangeEndDate}
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary btn-block">
+              Add
+            </button>
+
+            <button
+              className="closeButton  btn btn-primary btn-block"
+              onClick={onClick}
+            >
+              Close
+            </button>
+          </form>
+        )}
+      </ReactCircleModal>
+    );
+  }
+}
