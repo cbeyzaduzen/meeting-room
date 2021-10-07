@@ -1,18 +1,38 @@
 import React, { Component } from "react";
-import ReactCircleModal from "react-circle-modal";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import "./Popup.css";
-import { TextField, Grid } from "@mui/material";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import { v4 as uuidv4 } from "uuid";
-
+import "./Popup.css";
 
 export default class Popup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       randevu: [],
+      
     };
   }
+  // const [open, setOpen] = React.useState(false);
+
+  handleClickOpen = (e) => {
+    this.setState({
+      open:true
+    })
+    // setOpen(true);
+  };
+
+  handleClose = (e) => {
+    this.setState({
+      open:false
+    })
+    // setOpen(false);
+  };
+
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -41,83 +61,58 @@ export default class Popup extends Component {
     e.preventDefault();
   };
 
-  // componentDidMount() {
-  //   const documentData = localStorage.getItem("document") || [];
-  //   this.setState({
-  //     randevu: documentData,
-  //   });
-  // }
 
   render() {
-    const { randevu } = this.state;
     return (
-      <ReactCircleModal
-        className="circle-modal"
-        backgroundColor="#E0F1F0"
-        toogleComponent={(onClick) => (
-          <div className="addIcon">
-            <AddCircleIcon onClick={onClick}></AddCircleIcon>
-          </div>
-        )}
-      >
-        {(onClick) => (
-          <>
-            <Grid item xs={12}>
-              <form>
-                <div className="form-group-title">
-                  <label className="title">Title</label>
-                  <TextField
-                    name="title"
-                    className="title_"
-                    value={this.state.title}
-                    onChange={this.handleChange}
-                    focused
-                  />
-                </div>
+      <div>
+        <Button variant="outlined" onClick={this.handleClickOpen}>Add</Button>
+        <Dialog open={this.state.open} onClose={this.handleClose}>
+          <DialogTitle>Meeting Info</DialogTitle>
+          <DialogContent>
+            <DialogContentText>add</DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Title"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={this.state.title}
+              onChange={this.handleChange}
+            />
 
-                <div className="form-group-start">
-                  <label className="start-title">Meeting Start</label>
-                  <TextField
-                    type="date"
-                    sx={{ width: 250 }}
-                    name="start"
-                    value={this.state.start}
-                    onChange={this.handleChangeStartDate}
-                  />
-                </div>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="start"
+              label="Start"
+              type="date"
+              fullWidth
+              variant="standard"
+              name="start"
+              value={this.state.start}
+              onChange={this.handleChangeStartDate}
+            />
 
-                <div className="form-group-end">
-                  <label className="end-title">Meeting End</label>
-                  <TextField
-                    type="date"
-                    sx={{ width: 250 }}
-                    name="end"
-                    value={this.state.end}
-                    onChange={this.handleChangeEndDate}
-                  />
-                </div>
-              </form>
-            </Grid>
-
-            <Grid item xs>
-              <button
-                className="closeButton btn btn-primary btn-block"
-                onClick={onClick}
-              >
-                Close
-              </button>
-
-              <button
-                type="submit"
-                onClick={this.handleFormSubmit}
-                className="addButton btn btn-primary btn-block"
-              >
-                Add
-              </button>
-            </Grid>
-          </>
-        )}
-      </ReactCircleModal>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="end"
+              label="End"
+              type="date"
+              fullWidth
+              variant="standard"
+              value={this.state.end}
+              onChange={this.handleChangeEndDate}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose}>Cancel</Button>
+            <Button onClick={this.handleFormSubmit}>Add</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     );
   }
 }
