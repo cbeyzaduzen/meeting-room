@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import SecondPart from "./SecondPart";
+import { SecondPart } from "./components";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App/>
+    <SecondPart/>
   </React.StrictMode>,
   document.getElementById("root")
 );

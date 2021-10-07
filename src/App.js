@@ -1,18 +1,14 @@
 import "./App.css";
-import SecondPart from "./SecondPart";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import FirstPartBusy from "./FirstPartBusy";
-import FirstPartOpen from "./FirstPartOpen";
 import { BrowserRouter, Route } from "react-router-dom";
-
+import {SecondPart,FirstPartBusy,FirstPartOpen} from './components'
 function App() {
   return (
     <div className="App">
 
-      {/* <FirstPartBusy/> */}
-      <FirstPartOpen />
+      
 
-      <SecondPart></SecondPart>
+      <SecondPart/>
     </div>
   );
 }

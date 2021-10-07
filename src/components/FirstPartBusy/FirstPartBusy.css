@@ -1,0 +1,15 @@
+.firstPartBusy {
+  display: flex;
+  background-color: red;
+  width: 50%;
+  height: 800px;
+}
+
+.busy {
+  display: flex;
+  color: white;
+  font-size: 100px;
+  margin-top: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}

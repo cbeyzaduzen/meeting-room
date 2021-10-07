@@ -1,4 +1,3 @@
-
 .dateInput {
   width: 100%;
   height: 100%;
@@ -21,17 +20,21 @@
   width: 30%;
 }
 
-.closeButton {
+.addButton {
   float: right;
-  position: fixed;
-  right: 5px;
-  bottom: 70px;
+  margin-right: 5px;
 }
 
-.addButton {
-  position: fixed;
-  right: 80px;
-  bottom: 70px;
+.closeButton {
+  display: table;
+  float: right;
+  vertical-align: bottom;
+  margin-right: 15px;
+}
+
+.addIcon svg {
+  height: 2em;
+  width: 2em;
 }
 
 .meeting_title {
@@ -41,16 +44,20 @@
 .start-title {
   display: block;
   text-align: center;
+  padding-bottom: 15px;
 }
 
 .end-title {
   display: block;
   text-align: center;
+  padding-bottom: 15px;
 }
 
 .title {
   display: block;
   text-align: center;
+  padding-bottom: 15px;
+  width: 250px;
 }
 
 .circle-modal {
@@ -62,32 +69,36 @@
 .startDate {
   display: block;
   width: 50%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.endDate{
+.endDate {
   display: block;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.title_{
+.title_ {
   display: block;
-  width: 50%;
+  width: 250px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.form-group-title{
-  margin-top: 50px; 
+.form-group-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
 }
 
-.form-group-start{
+.form-group-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 30px;
 }
 
-.form-group-end{
+.form-group-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 30px;
 }
