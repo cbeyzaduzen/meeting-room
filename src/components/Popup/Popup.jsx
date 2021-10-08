@@ -17,24 +17,22 @@ export default class Popup extends Component {
       
     };
   }
-  // const [open, setOpen] = React.useState(false);
 
   handleClickOpen = (e) => {
     this.setState({
       open:true
     })
-    // setOpen(true);
   };
 
   handleClose = (e) => {
     this.setState({
       open:false
     })
-    // setOpen(false);
   };
 
 
   handleChange = (e) => {
+    console.log(e.target.value)
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -53,8 +51,20 @@ export default class Popup extends Component {
   handleFormSubmit = (e) => {
     const { end, title, start } = this.state;
     const item = { ID: uuidv4(), Title: title, Start: start, End: end };
+    
+    if (title=='' || title==undefined || title==null ) {
+      return alert('title alanı boş geçilemez')
+    }
 
-    this.setState({ randevu: [...this.state.randevu, item] }, () => {
+    if (end=='' || end==undefined || end==null ) {
+      return alert('tarih alanı boş geçilemez')
+    }
+
+    if (start=='' || start==undefined || start==null ) {
+      return alert('tarih alanı boş geçilemez')
+    }
+
+    this.setState({ randevu: [...this.state.randevu, item] ,open:false}, () => {
       localStorage.setItem("document", JSON.stringify(this.state.randevu));
     });
 
@@ -78,6 +88,7 @@ export default class Popup extends Component {
               type="text"
               fullWidth
               variant="standard"
+              name="title"
               value={this.state.title}
               onChange={this.handleChange}
             />
@@ -86,7 +97,7 @@ export default class Popup extends Component {
               autoFocus
               margin="dense"
               id="start"
-              label="Start"
+              
               type="date"
               fullWidth
               variant="standard"
@@ -99,7 +110,7 @@ export default class Popup extends Component {
               autoFocus
               margin="dense"
               id="end"
-              label="End"
+              
               type="date"
               fullWidth
               variant="standard"

@@ -15,7 +15,7 @@ export default class SecondPart extends Component {
     super(props);
 
     this.state = {
-      documents: JSON.parse(localStorage.getItem("document")),
+      documents: JSON.parse(localStorage.getItem("document")) || [],
       date: date,
       newTime: newTime,
       open: open,
@@ -36,19 +36,26 @@ export default class SecondPart extends Component {
 
         <div className="secondPart">
           <div className="currentDate">{this.state.date}</div>
-
           <div className="meetings">
             <h1 className="header">Upcoming Meetings</h1>
             <form id="meeting_list">
               <ul className="meetings">
-                {documents.map((document, inx) => {
-                  return (
-                    <li className="list-items" key={inx}>
-                      {document.Title},{document.Start},{document.End}
-                      <CloseIcon onClick={()=>{this.removeFromUI(document.ID)}}></CloseIcon>
-                    </li>
-                  );
-                })}
+                {
+                  documents.length>0 ?(
+                    documents.map((document, inx) => {
+                      return (
+                        <li className="list-items" key={inx}>
+                          {document.Title},{document.Start},{document.End}
+                          <CloseIcon onClick={()=>{this.removeFromUI(document.ID)}}></CloseIcon>
+                        </li>
+                      );
+                    })
+                  ):
+                  (
+                       <span>herhangi bir veri bulunamadı</span>
+                  )
+                   
+                }
               </ul>
             </form>
           </div>
