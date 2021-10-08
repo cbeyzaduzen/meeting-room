@@ -3,11 +3,13 @@ import "./SecondPart.css";
 import { Popup, FirstPartOpen, FirstPartBusy } from "../index";
 import { today, date } from "../Date/date";
 import CloseIcon from "@mui/icons-material/Close";
+import StateConsumer from "../../context";
+import { IconButton, ListItem, List ,ListItemText} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const newTime = today.getFullYear() + today.getMonth() + today.getDay();
 const meetingStartDate = document.Start;
 const meetingEndDate = document.End;
-// const busy = meetingStartDate >= newTime && newTime <= meetingEndDate;
 const open = meetingStartDate < newTime && meetingEndDate > newTime;
 
 export default class SecondPart extends Component {
@@ -22,47 +24,61 @@ export default class SecondPart extends Component {
     };
   }
 
-  removeFromUI = (id) => {
-    let newData = this.state.documents.filter((item) => item.ID !== id);
-    this.setState({ documents: newData });
-    localStorage.setItem("document", JSON.stringify(newData))
-  };
+   generate=(element)=>{
+    return [0, 1, 2].map((value) =>
+      React.cloneElement(element, {
+        key: value,
+      }),
+    );
+  }
 
   render() {
-    const { documents, open } = this.state;
     return (
-      <div className="main">
-        {open ? <FirstPartOpen /> : <FirstPartBusy />}
+      <StateConsumer>
+        {(value) => {
+          const { open } = this.state;
+          const { randevu, removeFromUI } = value;
+          return (
+            <div className="main">
+              {open ? <FirstPartOpen /> : <FirstPartBusy />}
 
-        <div className="secondPart">
-          <div className="currentDate">{this.state.date}</div>
-          <div className="meetings">
-            <h1 className="header">Upcoming Meetings</h1>
-            <form id="meeting_list">
-              <ul className="meetings">
-                {
-                  documents.length>0 ?(
-                    documents.map((document, inx) => {
-                      return (
-                        <li className="list-items" key={inx}>
-                          {document.Title},{document.Start},{document.End}
-                          <CloseIcon onClick={()=>{this.removeFromUI(document.ID)}}></CloseIcon>
-                        </li>
-                      );
+              <div className="secondPart">
+                <div className="currentDate">{this.state.date}</div>
+                <div className="meetings">
+                  <h1 className="header">Upcoming Meetings</h1>
+                  {randevu.length > 0 ? (
+                    <List>
+                    {
+                      randevu.map((document, inx) => {
+                        return (
+                          <ListItem className="list-items" key={inx}>
+                            <ListItemText
+                              primary={document.Title}
+                              secondary={`(${document.Start})   (${document.End})`}
+                            />
+                            <IconButton edge="end">
+                              <DeleteIcon
+                                onClick={() => {
+                                  removeFromUI(document.ID);
+                                }}
+                              ></DeleteIcon>
+                            </IconButton>
+                          </ListItem>
+                        )
                     })
-                  ):
-                  (
-                       <span>herhangi bir veri bulunamadı</span>
-                  )
-                   
-                }
-              </ul>
-            </form>
-          </div>
+                    }
+                    </List>
+                  ) : (
+                    <span>herhangi bir veri bulunamadı</span>
+                  )}
+                </div>
 
-          <Popup/>
-        </div>
-      </div>
+                <Popup  newTime={newTime} data={this.state.documents}/>
+              </div>
+            </div>
+          );
+        }}
+      </StateConsumer>
     );
   }
 }

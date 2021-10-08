@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { SecondPart } from "./components";
-
+import { ContextProvider } from "./context";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <SecondPart/>
-  </React.StrictMode>,
+  <ContextProvider>
+    <SecondPart />
+  </ContextProvider>,
+
   document.getElementById("root")
 );
 // If you want to start measuring performance in your app, pass a function
